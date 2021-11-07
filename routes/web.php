@@ -18,9 +18,11 @@ Route::get('/', function() {
 });
 
 Route::get('post/{post}', function($slug) {
+  $path = __DIR__ . "/../resources/posts/{slug}.html";
 
 
+  $post = file_get_contents($path);
   return view("post", [
-          'post' => "<h1>hello world</h1>",
-      ]);
+      'post' => $post,
+  ]);
 });
