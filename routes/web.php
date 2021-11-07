@@ -20,6 +20,10 @@ Route::get('/', function() {
 Route::get('post/{post}', function($slug) {
   $path = __DIR__ . "/../resources/posts/{slug}.html";
 
+  if (!file_exists($path)) {
+    dd("file does not exits"); //dump, die
+    ddd("file doest not exists"); /// dump die debug
+  }
 
   $post = file_get_contents($path);
   return view("post", [
