@@ -17,7 +17,9 @@ Route::get('/', function() {
   return view('posts');
 });
 
-Route::get('post', function() {
+Route::get('post/{post}', function($slug) {
+
+
   return view("post", [
           'post' => "<h1>hello world</h1>",
       ]);
