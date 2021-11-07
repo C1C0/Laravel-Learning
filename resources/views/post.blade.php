@@ -7,12 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My blog</title>
 
-{{--  This style.css is in PUBLIC dir. !!!  --}}
-{{--  Every generic css or js should be place there  --}}
-{{--  Resources are used with bundling tool  --}}
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h1><strong>Hello World</strong></h1>
+<article>
+    <h1><a href="/post">My first post</a></h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab assumenda at culpa dolor doloremque eaque ipsum magni minima numquam odio placeat quo recusandae, reiciendis, repellat tenetur! Consequuntur esse molestiae voluptatibus.</p>
+</article>
+
+<a href="/"> Go back </a>
 </body>
 </html>

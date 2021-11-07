@@ -1,3 +1,17 @@
 body{
-  background: grey;
+  background: #fefefe;
+  color: #444;
+  max-width: 750px;
+  margin: auto;
+  font-family: sans-serif;
+}
+
+p{
+  line-height: 1.5;
+}
+
+article + article{
+  margin-top: 3rem;
+
+  border-top: 1px solid #c5c5c5;
 }
