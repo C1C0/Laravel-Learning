@@ -17,7 +17,7 @@ Route::get('/', function() {
   return view('posts');
 });
 
-Route::get('post/{post}', function($slug) {
+Route::get('posts/{post}', function($slug) {
   $path = __DIR__ . "/../resources/posts/{$slug}.html";
 
   if (!file_exists($path)) {
