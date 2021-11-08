@@ -5,6 +5,7 @@ namespace App\Models;
 
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 
@@ -19,16 +20,13 @@ class Post {
   }
 
   public static function find($slug) {
-    // using helper functions
-    // also for "/app", "/resources" ...
-    if (!file_exists($path = resource_path("posts/{$slug}.html"))) {
-      return new ModelNotFoundException();
-    }
+    // Of all the blog posts, find the one with a slog that matches the one that was requested
+    $allPosts = static::all();
 
-    return cache()->remember("post.{$slug}", now()->addHour(), fn() => file_get_contents($path));
+    return $allPosts->firstWhere('slug', $slug);
   }
 
-  public static function all() {
+  public static function all(): Collection {
     return collect(File::files(resource_path("posts")))
         ->map(fn($file) => YamlFrontMatter::parseFile($file))
         ->map(fn($postData) => new Post($postData->title, $postData->body(), $postData->date, $postData->excerpt, $postData->slug));
