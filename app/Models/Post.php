@@ -29,7 +29,8 @@ class Post {
   public static function all(): Collection {
     return collect(File::files(resource_path("posts")))
         ->map(fn($file) => YamlFrontMatter::parseFile($file))
-        ->map(fn($postData) => new Post($postData->title, $postData->body(), $postData->date, $postData->excerpt, $postData->slug));
+        ->map(fn($postData) => new Post($postData->title, $postData->body(), $postData->date, $postData->excerpt, $postData->slug))
+        ->sortByDesc('date');
   }
 
 }
