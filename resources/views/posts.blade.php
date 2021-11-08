@@ -10,14 +10,16 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-<?php foreach($posts as $post): ?>
-<article>
-    <a href="/posts/<?= $post->slug ?>">
-        <h1><?= $post->title ?></h1>
-    </a>
-    <p><?= $post->excerpt ?></p>
+@foreach($posts as $post)
+    @dd($loop)
+    <article class="{{ $loop->even ? 'class' : '' }}">
+        <a href="/posts/{{ $post->slug }}">
+            <h1>{{ $post->title }}</h1>
 
-</article>
-<?php endforeach; ?>
+        </a>
+        <p>{{ $post->excerpt }}</p>
+
+    </article>
+@endforeach
 </body>
 </html>
