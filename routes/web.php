@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\Post;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +17,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function() {
+  $posts = [];
+
+  foreach(File::files(resource_path("posts")) as $file){
+    $postData = YamlFrontMatter::parseFile($file);
+
+
+    $posts[] = new Post(
+        $postData->title,
+        $postData->body(),
+        $postData->date,
+        $postData->excerpt,
+        $postData->slug
+    );
+  }
+
   return view('posts', [
-      "posts" => Post::all()
+      "posts" => $posts
   ]);
 });
 

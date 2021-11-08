@@ -10,10 +10,14 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <article>
-        <?php foreach($posts as $post): ?>
-            <?= $post ?>
-        <?php endforeach; ?>
-    </article>
+<?php foreach($posts as $post): ?>
+<article>
+    <a href="/posts/<?= $post->slug ?>">
+        <h1><?= $post->title ?></h1>
+    </a>
+    <p><?= $post->excerpt ?></p>
+
+</article>
+<?php endforeach; ?>
 </body>
 </html>
