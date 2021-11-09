@@ -14,6 +14,8 @@ class DatabaseSeeder extends Seeder {
    * @return void
    */
   public function run() {
+
+    // creates 4 totally random posts with always new user and category
     Post::factory(4)->create();
   }
 }
