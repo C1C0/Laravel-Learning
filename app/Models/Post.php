@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
-    use HasFactory;
+    use HasFactory; // enables to user Post::factory() -> looks into ...\PostFactory
 
     public function getRouteKeyName() {
       return 'slug';
