@@ -9,6 +9,9 @@ class Post extends Model
 {
     use HasFactory; // enables to user Post::factory() -> looks into ...\PostFactory
 
+    // when want to avoid one or more of them - use ->without('category' ...)
+    protected $with = ['category', 'author'];
+
     public function getRouteKeyName() {
       return 'slug';
     }
