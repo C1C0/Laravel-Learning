@@ -15,10 +15,16 @@ class DatabaseSeeder extends Seeder {
    */
   public function run() {
     // create 1 user and assign him posts
-    $user = User::factory()->create(['name' => 'John Doe']);
+    $user1 = User::factory()->create(['name' => 'John Doe']);
+    $user2 = User::factory()->create(['name' => 'Foo Bar']);
 
     Post::factory(4)->create([
-        'user_id' => $user->id,
+        'user_id' => $user2->id,
+    ]);
+
+
+    Post::factory(2)->create([
+        'user_id' => $user1->id,
     ]);
   }
 }
