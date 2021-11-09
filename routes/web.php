@@ -20,7 +20,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 Route::get('/', function() {
   return view('posts', [
-      "posts" => Post::latest()->with('category')->get(),
+      "posts" => Post::latest()->with('category', 'author')->get(),
   ]);
 });
 
@@ -33,5 +33,5 @@ Route::get('categories/{category:slug}', function(Category $category){
 });
 
 Route::get('authors/{author}', function(User $author){
-  return view('posts', ['posts' => $author->posts()->with('author')->get()]);
+  return view('posts', ['posts' => $author->posts()->with(['category', 'author'])->get()]);
 });
