@@ -14,8 +14,11 @@ class DatabaseSeeder extends Seeder {
    * @return void
    */
   public function run() {
+    // create 1 user and assign him posts
+    $user = User::factory()->create(['name' => 'John Doe']);
 
-    // creates 4 totally random posts with always new user and category
-    Post::factory(4)->create();
+    Post::factory(4)->create([
+        'user_id' => $user->id,
+    ]);
   }
 }
