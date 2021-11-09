@@ -17,7 +17,8 @@ class Post extends Model
       return $this->belongsTo(Category::class);
     }
 
-    public function user(){
-      return $this->belongsTo(User::class);
+    public function author(){ // IMPORTANT: this alone would look for author_id !!!
+      // We have to specify, which column we refer to => i.e. user_id
+      return $this->belongsTo(User::class, 'user_id');
     }
 }
