@@ -34,17 +34,12 @@
                     </button>
                 </x-slot>
 
-                <a href="/"
-                   class="block text-left w-full px-3 text-sm leading-6 hover:bg-blue-500 hover:text-white focus:bg-blue-500 focus:text-white">
-                    All
-                </a>
+                <x-dropdown-item href="/">All</x-dropdown-item>
+
                 @foreach($categories as $category)
-                    <a href="/categories/{{$category->slug}}"
-                       class="block text-left w-full px-3 text-sm leading-6 hover:bg-blue-500
-                            hover:text-white focus:bg-blue-500 focus:text-white
-                            {{isset($currentCategory) && $currentCategory->is($category) ? 'bg-blue-500 text-white' : ''}}">
+                    <x-dropdown-item href="/categories/{{$category->slug}}" :active="$currentCategory->is($category)">
                         {{ucwords($category->name)}}
-                    </a>
+                    </x-dropdown-item>
                 @endforeach
             </x-dropdown>
         </div>
