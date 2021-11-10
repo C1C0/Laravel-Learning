@@ -10,9 +10,7 @@
                 <x-post-card :post="$post"/>
             @endforeach
         </div>
-
-
-
+    </main>
 
     {{--    <x-slot name="content">--}}
     {{--        @foreach($posts as $post)--}}
