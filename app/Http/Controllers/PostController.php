@@ -21,11 +21,6 @@ class PostController extends Controller
                         ]
                     )
                 )->get(),
-                'categories' => Category::all(),
-                'currentCategory' => Category::where(
-                    'slug',
-                    request(Config::get('constants.GET_REQUEST.CATEGORY'))
-                )->first(),
             ]
         );
     }

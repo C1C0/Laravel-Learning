@@ -26,7 +26,6 @@ Route::get(
             'posts',
             [
                 'posts' => $category->posts,
-                'categories' => Category::all(),
                 'currentCategory' => $category,
             ]
         );
@@ -40,7 +39,6 @@ Route::get(
             'posts',
             [
                 'posts' => $author->posts,
-                'categories' => Category::all(),
             ]
         );
     }
