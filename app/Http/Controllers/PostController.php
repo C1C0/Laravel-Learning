@@ -10,15 +10,8 @@ use Illuminate\Support\Facades\Config;
 class PostController extends Controller
 {
     public function index(){
-      $posts = Post::latest();
-
-      if (request(Config::get('constants.GET_REQUEST.SEARCH'))) {
-        $posts->where('title', 'like', "%" . request(Config::get('constants.GET_REQUEST.SEARCH')) . "%")
-            ->orWhere('body', 'like', "%" . request(Config::get('constants.GET_REQUEST.SEARCH')) . "%");
-      }
-
       return view('posts', [
-          "posts" => $posts->get(),
+          "posts" => Post::latest()->filter()->get(),
           'categories' => Category::all(),
       ]);
     }
