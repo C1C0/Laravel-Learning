@@ -8,10 +8,14 @@
         </button>
     </x-slot>
 
-    <x-dropdown-item href="/" :active="request()->routeIs('home')">All</x-dropdown-item>
+    @php
+        $parameters = http_build_query(request()->except(Config::get('constants.GET_REQUEST.CATEGORY')));
+    @endphp
+
+    <x-dropdown-item href="/?{{$parameters}}" :active="request()->routeIs('home')">All</x-dropdown-item>
 
     @foreach($categories as $category)
-        <x-dropdown-item href="/?{{ Config::get('constants.GET_REQUEST.CATEGORY') }}={{$category->slug}}"
+        <x-dropdown-item href="/?{{ Config::get('constants.GET_REQUEST.CATEGORY') }}={{$category->slug}}{{!empty($parameters) ? '&' : ''}}{{$parameters}}"
                          :active='request()->is("?category={$category->slug}")'>
             {{ucwords($category->name)}}
         </x-dropdown-item>

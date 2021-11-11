@@ -8,7 +8,7 @@
 
         <!--  Category -->
         <div class="relative lg:inline-flex bg-gray-100 rounded-xl">
-            <x-category-dropdown />
+            <x-category-dropdown/>
         </div>
 
         <!-- Other Filters -->
@@ -36,6 +36,13 @@
     <!-- Search -->
         <div class="relative flex lg:inline-flex items-center bg-gray-100 rounded-xl px-3 py-2">
             <form method="GET" action="#">
+
+                @if(!empty(request(Config::get('constants.GET_REQUEST.CATEGORY'))))
+                    <input type="hidden"
+                           name="{{Config::get('constants.GET_REQUEST.CATEGORY')}}"
+                           value="{{request(Config::get('constants.GET_REQUEST.CATEGORY'))}}">
+                @endif
+
                 <input type="text"
                        name="search"
                        placeholder="Find something"
