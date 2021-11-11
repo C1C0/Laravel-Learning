@@ -9,7 +9,7 @@
     </x-slot>
 
     @php
-        $parameters = http_build_query(request()->except(Config::get('constants.GET_REQUEST.CATEGORY')));
+        $parameters = http_build_query(request()->except(Config::get('constants.GET_REQUEST.CATEGORY')), 'page');
     @endphp
 
     <x-dropdown-item href="/?{{$parameters}}" :active="request()->routeIs('home')">All</x-dropdown-item>

@@ -15,21 +15,25 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // create 1 user and assign him posts
-        $user1 = User::factory()->create(['name' => 'John Doe']);
-        $user2 = User::factory()->create(['name' => 'Foo Bar']);
+        // create 4 user and assign them posts
+        $users = [];
+        $names = ['John Doe', 'Foo Bar'];
+        $numberOfUsers = random_int(6, 10);
 
-        Post::factory(4)->create(
-            [
-                'user_id' => $user2->id,
-            ]
-        );
+        for($i = 0; $i < $numberOfUsers; $i++){
+            if($names[$i] ?? false){
+                $users[] = User::factory()->create(['name' => $names[$i]]);
+            }else{
+                $users[] = User::factory()->create();
+            }
+        }
 
-
-        Post::factory(2)->create(
-            [
-                'user_id' => $user1->id,
-            ]
-        );
+        foreach ($users as $user){
+            Post::factory(random_int(2, 6))->create(
+                [
+                    'user_id' => $user->id,
+                ]
+            );
+        }
     }
 }
