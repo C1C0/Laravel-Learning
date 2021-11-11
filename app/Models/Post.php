@@ -29,8 +29,19 @@ class Post extends Model
     {
         $query->when(
             $filters[Config::get('constants.GET_REQUEST.SEARCH')] ?? false,
-            fn($query) => $query->where('title', 'like', "%".request(Config::get('constants.GET_REQUEST.SEARCH'))."%")
+            fn($query) => $query
+                ->where('title', 'like', "%".request(Config::get('constants.GET_REQUEST.SEARCH'))."%")
                 ->orWhere('body', 'like', "%".request(Config::get('constants.GET_REQUEST.SEARCH'))."%")
+        );
+
+        $query->when(
+            $filters[Config::get('constants.GET_REQUEST.CATEGORY')] ?? false,
+            fn($query, $category) => $query
+                ->whereExists(
+                    fn($query) => $query->from('categories')
+                        ->whereColumn('categories.id', 'posts.category_id')
+                        ->where('categories.slug', $category)
+                )
         );
     }
 

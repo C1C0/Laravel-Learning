@@ -6,5 +6,6 @@ return [
     ],
     'GET_REQUEST' => [
         'SEARCH' => 'search',
+        'CATEGORY' => 'category',
     ],
 ];
