@@ -24,10 +24,8 @@ class Post extends Model {
    * @param $query
    */
   public function scopeFilter($query, array $filters) {
-    if ($filters[Config::get('constants.GET_REQUEST.SEARCH')] ?? false) {
-      $query->where('title', 'like', "%" . request(Config::get('constants.GET_REQUEST.SEARCH')) . "%")
-          ->orWhere('body', 'like', "%" . request(Config::get('constants.GET_REQUEST.SEARCH')) . "%");
-    }
+    $query->when($filters[Config::get('constants.GET_REQUEST.SEARCH')] ?? FALSE, fn($query) => $query->where('title', 'like', "%" . request(Config::get('constants.GET_REQUEST.SEARCH')) . "%")
+        ->orWhere('body', 'like', "%" . request(Config::get('constants.GET_REQUEST.SEARCH')) . "%"));
   }
 
   public function category() {
