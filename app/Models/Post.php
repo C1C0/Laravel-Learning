@@ -29,9 +29,11 @@ class Post extends Model
     {
         $query->when(
             $filters[Config::get('constants.GET_REQUEST.SEARCH')] ?? false,
-            fn($query) => $query
-                ->where('title', 'like', "%".request(Config::get('constants.GET_REQUEST.SEARCH'))."%")
-                ->orWhere('body', 'like', "%".request(Config::get('constants.GET_REQUEST.SEARCH'))."%")
+            fn($query, $search) => $query->where(
+                fn($query) => $query
+                    ->where('title', 'like', "%".$search."%")
+                    ->orWhere('body', 'like', "%".$search."%")
+            )
         );
 
         $query->when(
