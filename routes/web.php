@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
@@ -18,23 +19,8 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-Route::get('/', function() {
-  $posts = Post::latest();
-
-  if (request(Config::get('constants.GET_REQUEST.SEARCH'))) {
-    $posts->where('title', 'like', "%" . request(Config::get('constants.GET_REQUEST.SEARCH')) . "%")
-        ->orWhere('body', 'like', "%" . request(Config::get('constants.GET_REQUEST.SEARCH')) . "%");
-  }
-
-  return view('posts', [
-      "posts" => $posts->get(),
-      'categories' => Category::all(),
-  ]);
-})->name('home');
-
-Route::get('posts/{post}', function(Post $post) { // Post::where('slug', $post)->firstOrFail()
-  return view('post', ['post' => $post]);
-});
+Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('posts/{post}', [PostController::class, 'show']);
 
 Route::get('categories/{category:slug}', function(Category $category) {
   return view('posts', [
