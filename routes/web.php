@@ -23,7 +23,7 @@ Route::get(
     'categories/{category:slug}',
     function (Category $category) {
         return view(
-            'posts',
+            'posts.index',
             [
                 'posts' => $category->posts,
                 'currentCategory' => $category,
@@ -36,7 +36,7 @@ Route::get(
     'authors/{author:username}',
     function (User $author) {
         return view(
-            'posts',
+            'posts.index',
             [
                 'posts' => $author->posts,
             ]
