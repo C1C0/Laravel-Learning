@@ -1,4 +1,4 @@
-@props(['active' => FALSE])
+@props(['active' => false])
 
 @php
 
