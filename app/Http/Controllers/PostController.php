@@ -11,7 +11,7 @@ class PostController extends Controller
     public function index()
     {
         return view(
-            'posts',
+            'posts.index',
             [
                 "posts" => Post::latest()->filter(
                     request(
@@ -27,6 +27,6 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return view('post', ['post' => $post]);
+        return view('posts.show', ['post' => $post]);
     }
 }
