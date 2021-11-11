@@ -21,7 +21,7 @@ class PostController extends Controller
                             Config::get('constants.GET_REQUEST.AUTHOR'),
                         ]
                     )
-                )->paginate(6),
+                )->paginate(6)->withQueryString(),
             ]
         );
     }
