@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function index(){
       return view('posts', [
-          "posts" => Post::latest()->filter()->get(),
+          "posts" => Post::latest()->filter(request([Config::get('constants.GET_REQUEST.SEARCH')]))->get(),
           'categories' => Category::all(),
       ]);
     }
