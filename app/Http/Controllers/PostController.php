@@ -17,7 +17,8 @@ class PostController extends Controller
                     request(
                         [
                             Config::get('constants.GET_REQUEST.SEARCH'),
-                            Config::get('constants.GET_REQUEST.CATEGORY')
+                            Config::get('constants.GET_REQUEST.CATEGORY'),
+                            Config::get('constants.GET_REQUEST.AUTHOR'),
                         ]
                     )
                 )->get(),

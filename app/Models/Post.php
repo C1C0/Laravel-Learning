@@ -41,6 +41,14 @@ class Post extends Model
                 fn($query) => $query->where('slug', $category)
             )
         );
+
+        $query->when(
+            $filters[Config::get('constants.GET_REQUEST.AUTHOR')] ?? false,
+            fn($query, $author) => $query->whereHas(
+                'author',
+                fn($query) => $query->where('username', $author)
+            )
+        );
     }
 
     public function category()
