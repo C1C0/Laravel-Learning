@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
 {
@@ -17,8 +18,8 @@ class RegisterController extends Controller
         $attributes = request()->validate(
             [
                 'name' => ['required', 'max:30'], // new syntax,
-                'username' => 'required|max:25', // old syntax
-                'email' => ['required', 'email'],
+                'username' => 'required|min:3|max:25|unique:users,username', //unique:<table>,<column>
+                'email' => ['required', 'email', Rule::unique('users', 'email')],
                 'password' => ['required', 'min:7', 'max:255'],
             ]
         );
