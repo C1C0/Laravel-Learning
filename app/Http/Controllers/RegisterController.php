@@ -23,6 +23,8 @@ class RegisterController extends Controller
             ]
         );
 
+        $attributes['password'] = bcrypt($attributes['password']);
+
         $user = new User();
         $user->name = $attributes['name'];
         $user->username = $attributes['username'];
