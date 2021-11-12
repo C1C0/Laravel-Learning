@@ -1,3 +1,5 @@
+@props(['comment'])
+
 <article class="flex bg-gray-100 border border-gray-200 p-6 rounded-xl space-x-5">
 
     <div class="flex-shrink-0">
@@ -6,17 +8,16 @@
 
     <div>
         <header class="mb-4">
-            <h3 class="font-bold">John Doe</h3>
+            <h3 class="font-bold">{{ $comment->author->username }}</h3>
 
             <p class="text-xs">
                 Posted
-                <time>8 months ago</time>
+                <time>{{ $comment->created_at->diffForHumans()}}</time>
             </p>
         </header>
 
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus beatae dicta dolorem
-            enim error ex, expedita illum impedit iste iure iusto nostrum placeat quaerat quasi quia
-            quis quod repellat totam.
-        </p>
+
+        {{ $comment->body }}
+
     </div>
 </article>
