@@ -29,5 +29,7 @@ class RegisterController extends Controller
         $user->email = $attributes['email'];
         $user->password = $attributes['password'];
         $user->save();
+
+        return redirect('/');
     }
 }
