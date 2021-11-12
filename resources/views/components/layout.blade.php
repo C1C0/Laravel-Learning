@@ -78,4 +78,7 @@
         </div>
     </footer>
 </section>
+
+<x-flash :sessionName="Config::get('constants.SESSION.SUCCESS')" />
+
 </body>

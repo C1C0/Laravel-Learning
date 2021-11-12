@@ -10,6 +10,8 @@ class PostController extends Controller
 {
     public function index()
     {
+        session()->flash(Config::get('constants.SESSION.SUCCESS'), 'Your account has been created.');
+
         return view(
             'posts.index',
             [

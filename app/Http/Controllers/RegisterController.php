@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Validation\Rule;
 
 class RegisterController extends Controller
@@ -30,6 +31,8 @@ class RegisterController extends Controller
         $user->email = $attributes['email'];
         $user->password = $attributes['password'];
         $user->save();
+
+        session()->flash(Config::get('constants.SESSION.SUCCESS'), 'Your account has been created.');
 
         return redirect('/');
     }

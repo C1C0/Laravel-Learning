@@ -9,4 +9,7 @@ return [
         'CATEGORY' => 'category',
         'AUTHOR' => 'author',
     ],
+    'SESSION' => [
+        'SUCCESS' => 'success',
+    ],
 ];
