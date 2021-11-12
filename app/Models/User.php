@@ -41,6 +41,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * Attribute mutator
+     * HAS TO FOLLOW CONVENTION SYNTAX
+     * <get {Accessor} | set {Mutator}><attribute_name>Attribute
+     */
+    public function setPasswordAttribute($password){
+        $this->attributes['password'] = bcrypt($password);
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
