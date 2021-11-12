@@ -22,11 +22,6 @@
                            required
                     >
 
-
-                    {{-- @error(ATTRIBUTE_NAME) --}}
-                    @error('name')
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
                 </div>
 
                 <div class="mb-6">
@@ -42,10 +37,6 @@
                            required
                     >
 
-                    {{-- @error(ATTRIBUTE_NAME) --}}
-                    @error('username')
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
                 </div>
 
                 <div class="mb-6">
@@ -61,10 +52,6 @@
                            required
                     >
 
-                    {{-- @error(ATTRIBUTE_NAME) --}}
-                    @error('email')
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
                 </div>
 
                 <div class="mb-6">
@@ -79,10 +66,6 @@
                            required
                     >
 
-                    {{-- @error(ATTRIBUTE_NAME) --}}
-                    @error('password')
-                    <p class="text-red-500 text-xs mt-1">{{$message}}</p>
-                    @enderror
                 </div>
 
                 <div class="mb-6">
@@ -90,6 +73,15 @@
                         Submit
                     </button>
                 </div>
+
+                {{--Erros--}}
+                @if($errors->any())
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li class="text-red-500 text-xs">{{$error}}</li>
+                        @endforeach
+                    </ul>
+                @endif
             </form>
         </main>
     </section>
