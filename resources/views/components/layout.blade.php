@@ -19,6 +19,7 @@
             {{-- Same as @if(!auth()->check()) --}}
             @guest
                 <a href="/register" class="text-xs font-bold uppercase">Register</a>
+                <a href="/login" class="ml-6 text-xs font-bold uppercase">Log In</a>
             @else
                 <span class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}</span>
 
