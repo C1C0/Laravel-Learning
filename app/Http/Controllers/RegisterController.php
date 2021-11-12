@@ -32,6 +32,9 @@ class RegisterController extends Controller
         $user->password = $attributes['password'];
         $user->save();
 
+        // Login user
+        auth()->login($user);
+
         return redirect('/')->with(Config::get('constants.SESSION.SUCCESS'), 'Your account has been created.');
     }
 }
