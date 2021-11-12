@@ -22,6 +22,11 @@
                     >
                 </div>
 
+                {{-- @error(ATTRIBUTE_NAME) --}}
+                @error('name')
+                <p class="text-red-500 text-xs mb-1">{{$message}}</p>
+                @enderror
+
                 <div class="mb-6">
                     <label for="username" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         Username
@@ -45,7 +50,7 @@
                            name="email"
                            id="email"
                            required
-                           >
+                    >
                 </div>
 
                 <div class="mb-6">
@@ -58,7 +63,7 @@
                            name="password"
                            id="password"
                            required
-                           >
+                    >
                 </div>
 
                 <div class="mb-6">

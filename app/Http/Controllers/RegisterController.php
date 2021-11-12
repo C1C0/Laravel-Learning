@@ -16,7 +16,7 @@ class RegisterController extends Controller
         // Redirects to previous page if condition not met
         $attributes = request()->validate(
             [
-                'name' => ['required'], // new syntax,
+                'name' => ['required', 'max:30'], // new syntax,
                 'username' => 'required|max:25', // old syntax
                 'email' => ['required', 'email'],
                 'password' => ['required', 'min:7', 'max:255'],
