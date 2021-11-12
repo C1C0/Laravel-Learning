@@ -32,8 +32,6 @@ class RegisterController extends Controller
         $user->password = $attributes['password'];
         $user->save();
 
-        session()->flash(Config::get('constants.SESSION.SUCCESS'), 'Your account has been created.');
-
-        return redirect('/');
+        return redirect('/')->with(Config::get('constants.SESSION.SUCCESS'), 'Your account has been created.');
     }
 }
