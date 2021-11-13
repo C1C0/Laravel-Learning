@@ -7,7 +7,6 @@ use App\Http\Controllers\SessionController;
 use App\Services\Newsletter;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\ValidationException;
-use MailchimpMarketing\ApiClient;
 
 Route::get(
     'newsletter',
@@ -17,7 +16,6 @@ Route::get(
                 'email' => 'required|email',
             ]
         );
-
 
         try {
             $newsletter->subscribe($request->get('email'));
