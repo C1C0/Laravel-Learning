@@ -9,7 +9,7 @@ use MailchimpMarketing\ApiClient;
 class Newsletter
 {
 
-    public function __construct(protected ApiClient $client)
+    public function __construct(protected ApiClient $client, protected string $foo)
     {
         //
     }
