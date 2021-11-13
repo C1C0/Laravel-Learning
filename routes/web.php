@@ -4,6 +4,7 @@ use App\Http\Controllers\PostCommentsController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
+use App\Services\Newsletter;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Validation\ValidationException;
 use MailchimpMarketing\ApiClient;
@@ -17,23 +18,10 @@ Route::get(
             ]
         );
 
-        $mailchimp = new ApiClient();
-
-        $mailchimp->setConfig(
-            [
-                'apiKey' => config('services.mailchimp.key'),
-                'server' => 'us6',
-            ]
-        );
 
         try {
-            $mailchimp->lists->addListMember(
-                '<list_id>',
-                [
-                    'email_address' => $request->get('email'),
-                    'status' => 'subscribed',
-                ]
-            );
+            $newsletter = new Newsletter();
+            $newsletter->subscribe($request->get('email'));
         } catch (Exception) {
             ValidationException::withMessages(['email' => 'This email could not be added']);
         }
