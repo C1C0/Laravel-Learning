@@ -22,3 +22,4 @@ Route::get('newsletter', NewsletterController::class);
 
 Route::get('admin/posts/create', [PostController::class, 'create'])->middleware('admin');
 Route::post('admin/posts', [PostController::class, 'store'])->middleware('admin');
+Route::patch('...'); // need to add @method('PATCH') to the updating form
