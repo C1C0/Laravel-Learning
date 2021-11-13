@@ -12,4 +12,5 @@ return [
     'SESSION' => [
         'SUCCESS' => 'success',
     ],
+    'ADMIN_U' => env('ADMIN_USERNAME'),
 ];
