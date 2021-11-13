@@ -33,10 +33,6 @@ class PostController extends Controller
     }
 
     public function create(){
-        if(auth()->user()?->username !=='username'){
-            abort(Response::HTTP_FORBIDDEN);
-        }
-
         return view('posts.create');
 
     }
