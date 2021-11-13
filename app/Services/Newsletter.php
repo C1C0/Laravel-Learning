@@ -9,7 +9,7 @@ use MailchimpMarketing\ApiClient;
 class Newsletter
 {
 
-    public function __construct(protected ApiClient $client, protected string $foo)
+    public function __construct(protected ApiClient $client)
     {
         //
     }
@@ -19,21 +19,11 @@ class Newsletter
         $list ??= config('services.mailchimp.lists.subscribers');
 
 
-        return $this->lient()->lists->addListMember(
+        return $this->client->lists->addListMember(
             $list,
             [
                 'email_address' => $email,
                 'status' => 'subscribed',
-            ]
-        );
-    }
-
-    protected function client()
-    {
-        return $this->client->setConfig(
-            [
-                'apiKey' => config('services.mailchimp.key'),
-                'server' => 'us6',
             ]
         );
     }
