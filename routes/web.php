@@ -11,7 +11,7 @@ use MailchimpMarketing\ApiClient;
 
 Route::get(
     'newsletter',
-    function (Request $request) {
+    function (Request $request, Newsletter $newsletter) {
         $request->validate(
             [
                 'email' => 'required|email',
@@ -20,7 +20,6 @@ Route::get(
 
 
         try {
-            $newsletter = new Newsletter();
             $newsletter->subscribe($request->get('email'));
         } catch (Exception) {
             ValidationException::withMessages(['email' => 'This email could not be added']);
