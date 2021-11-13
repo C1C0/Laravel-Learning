@@ -1,7 +1,8 @@
 <x-layout>
-    <section class="px-6 py-8">
+    <section class="px-6 max-w-md mx-auto">
+        <h1 class="text-xl font-bold mb-4 mb-4">Publish new Post</h1>
         <x-panel class="max-w-sm m-auto">
-            <form action="/admin/posts" method="post">
+            <form action="/admin/posts" method="post" enctype="multipart/form-data">
                 @csrf
 
                 <div class="mb-6">
@@ -63,6 +64,19 @@
                             <option value="{{$category->id}}">{{ucwords($category->name)}}</option>
                         @endforeach
                     </select>
+                </div>
+
+                <div class="mb-6">
+                    <label for="thumbnail" class="block mb-2 uppercase font-bold text-xs text-gray-700">
+                        Thumbnail
+                    </label>
+
+                    <input class="border border-gray-400 p-2 w-full"
+                           type="file"
+                           name="thumbnail"
+                           id="thumbnail"
+                           required
+                           >
                 </div>
 
                 <x-submit-button>Publish</x-submit-button>
